@@ -33,11 +33,20 @@ from
 )as T2(c2)
 cross apply c2.nodes('/ArrayOfSetting/Setting') T3(c3);
 SET IDENTITY_INSERT [dbo].[CMSetting]  OFF;
-SELECT * FROM [dbo].[CMSetting]
+
+UPDATE  [dbo].[CMSetting] SET VALUE='' WHERE VALUE IS NULL;
 
 
 --Export
 
 WITH XMLNAMESPACES ('http://www.w3.org/2001/XMLSchema' AS xsd, 'http://www.w3.org/2001/XMLSchema-instance' AS xsi) 
 SELECT * FROM [Primordial].[dbo].[CMSetting] FOR XML PATH ('Setting'), ROOT ('ArrayOfSetting')
+
+--Select
+select 
+'IF NOT EXISTS(SELECT [SettingID] FROM [CMSetting] WHERE  Apialias='''+Apialias+''' AND ApplicationID = '+ CAST( ApplicationID AS VARCHAR(20))+' and  RuntimeEnvironment = '''+RuntimeEnvironment+''')
+INSERT [dbo].[CMSetting] ([ApplicationID], [ApplicationName], [SettingPath], [APIAlias], [UpdatedDate], [AccessLevel], [Value], [RuntimeEnvironment], [VariableName])  
+VALUES  ('+ CAST( ApplicationID AS VARCHAR(20))+', N'''+ApplicationName+''', N'''+SettingPath+''', N'''+APIAlias+''', getDate(), N'''+AccessLevel+''', N'''+Value+''', N'''+RuntimeEnvironment+''', N'''+VariableName+''');'
+from CMSetting;
+
 
