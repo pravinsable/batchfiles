@@ -11,17 +11,34 @@ pushd .
 :MyLoop
 cls
 
-set "callFlag=1"
-call "C:\src\pravin.sable\batchfiles\DACPAC.cmd" 
+IF %1.==. GOTO SkippDACPAC
 
+cd  "%bitbucket%\deployments\Database"
+set solution=Primordial.Database.sln
+call:pull
+call:compile
+call "C:\src\github\pravinsable\batchfiles\DACPAC.cmd" 
+
+:SkippDACPAC
 cd "%bitbucket%\core"
 set solution=Primordial.Core.projects.sln
 call:pull
 call:compile
+set solution=Primordial.Audit.sln
+call:pull
+call:compile
+
 cd "%bitbucket%\common\Nuance.Primordial.Common"
 set solution=Nuance.Primordial.Common.sln
 call:pull
 call:compile
+
+
+cd "%bitbucket%\core\Primordial.Components"
+set solution=Primordial.Components.sln
+call:pull
+call:compile
+
 
 cd "%bitbucket%\search\Primordial.Search"
 set solution=Primordial.Search.sln
