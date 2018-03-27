@@ -1,5 +1,8 @@
 SET NOCOUNT ON
 
+
+ UPDATE [Primordial].[dbo].[CMSetting] SET value = replace(value, 'D:\', 'C:\') where value like 'D:\%'
+
 IF NOT EXISTS(SELECT [SettingID] FROM [CMSetting] WHERE  Apialias='LungScreening.ALERT_WORKER_EXAM_QUERY' AND ApplicationID = 1002 and  RuntimeEnvironment = 'Prod')
     INSERT [dbo].[CMSetting] ([ApplicationID], [ApplicationName], [SettingPath], [APIAlias], [UpdatedDate], [AccessLevel], [Value], [RuntimeEnvironment], [VariableName])  
     VALUES (1002, N'Lung Screening', N'LungScreening.ALERT_WORKER_EXAM_QUERY', N'LungScreening.ALERT_WORKER_EXAM_QUERY', getDate(), N'Internal', N'
