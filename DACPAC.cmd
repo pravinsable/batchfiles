@@ -59,17 +59,19 @@ if "x!result:%success%=!"=="x%result%" (
 goto:eof
 
 :pull
-FOR /F "tokens=* USEBACKQ" %%F IN (`git rev-parse --abbrev-ref HEAD`) DO ( SET branch=%%F)
-git remote update origin  --prune
-if not %branch%==master (
-  git checkout master -q
-  echo pulling from master branch
-  git pull 
-  git checkout %branch% -q
-  echo pulling from %branch% branch
-  git pull
-) else (
-  echo pulling from %branch% branch
-  git pull
-)
+git checkout release/WO-Version1
+git pull
+REM FOR /F "tokens=* USEBACKQ" %%F IN (`git rev-parse --abbrev-ref HEAD`) DO ( SET branch=%%F)
+REM git remote update origin  --prune
+REM if not %branch%==master (
+  REM git checkout master -q
+  REM echo pulling from master branch
+  REM git pull 
+  REM git checkout %branch% -q
+  REM echo pulling from %branch% branch
+  REM git pull
+REM ) else (
+  REM echo pulling from %branch% branch
+  REM git pull
+REM )
 goto:eof
