@@ -59,7 +59,8 @@ if "x!result:%success%=!"=="x%result%" (
 goto:eof
 
 :pull
-git checkout release/WO-Version1
+git checkout master
+REM release/WO-Version1
 git pull
 REM FOR /F "tokens=* USEBACKQ" %%F IN (`git rev-parse --abbrev-ref HEAD`) DO ( SET branch=%%F)
 REM git remote update origin  --prune
