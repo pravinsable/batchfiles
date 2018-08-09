@@ -1,8 +1,7 @@
-USE  [Primordial]
 SET NOCOUNT ON
 
 
- UPDATE [Primordial].[dbo].[CMSetting] SET value = replace(value, 'D:\', 'C:\') where value like 'D:\%'
+ UPDATE [dbo].[CMSetting] SET value = replace(value, 'D:\', 'C:\') where value like 'D:\%'
 
 IF NOT EXISTS(SELECT [SettingID] FROM [CMSetting] WHERE  Apialias='LungScreening.ALERT_WORKER_EXAM_QUERY' AND ApplicationID = 1002 and  RuntimeEnvironment = 'Prod')
     INSERT [dbo].[CMSetting] ([ApplicationID], [ApplicationName], [SettingPath], [APIAlias], [UpdatedDate], [AccessLevel], [Value], [RuntimeEnvironment], [VariableName])  
@@ -93,22 +92,22 @@ ELSE
 IF NOT EXISTS(SELECT [SettingID] FROM [CMSetting] WHERE  Apialias='dbPrimordial' AND ApplicationID = 1008 and  RuntimeEnvironment = 'Prod')
     INSERT [dbo].[CMSetting] ([ApplicationID], [ApplicationName], [SettingPath], [APIAlias], [UpdatedDate], [AccessLevel], [Value], [RuntimeEnvironment], [VariableName])  
     VALUES (1008, N'General', N'dbPrimordial', N'dbPrimordial', getDate(), N'Internal', 
-	N'TV9Q2J14y0zRDLfX56tejqX1URRsKrhdmvgWb03AiUB50EeOwYUsDosADu9+IW+2YPHWI1tMncnFFK3o04Y+JLtR7kXRxQvPHGUq66Tilrf87lRga5Di5OB4o4n9U+sWNTL+7pRZsoKUp36CHBnODzpuJ6FL/dLCFsYyjHxoUAkUewksp+fzk37Pp4kplWIf'
+	N'htedomPL+ZuHNe2/jl9nPUlit0xQlzspApORIocSP6HlK5DG8IPk7t9oWEW/nCpaUZzYxNM0o1DX00w9uGddUIoAJxpbYWQ6XRt/Ls+sq+JlHHCKbDJi7pDwaSRnmveKLlw80fgS4zAkeMoCvPW6E07k2Om5mEYHCrZvycatj5s='
 	, N'Prod', N'dbPrimordial'); 
 ELSE
 	UPDATE [CMSetting] SET 
-	[Value] = N'TV9Q2J14y0zRDLfX56tejqX1URRsKrhdmvgWb03AiUB50EeOwYUsDosADu9+IW+2YPHWI1tMncnFFK3o04Y+JLtR7kXRxQvPHGUq66Tilrf87lRga5Di5OB4o4n9U+sWNTL+7pRZsoKUp36CHBnODzpuJ6FL/dLCFsYyjHxoUAkUewksp+fzk37Pp4kplWIf'
+	[Value] = N'htedomPL+ZuHNe2/jl9nPUlit0xQlzspApORIocSP6HlK5DG8IPk7t9oWEW/nCpaUZzYxNM0o1DX00w9uGddUIoAJxpbYWQ6XRt/Ls+sq+JlHHCKbDJi7pDwaSRnmveKLlw80fgS4zAkeMoCvPW6E07k2Om5mEYHCrZvycatj5s='
 	WHERE  Apialias='dbPrimordial' AND ApplicationID = 1008 and  RuntimeEnvironment = 'Prod';
 
 --6
 IF NOT EXISTS(SELECT [SettingID] FROM [CMSetting] WHERE  Apialias='dbRadFlow2' AND ApplicationID = 1008 and  RuntimeEnvironment = 'Prod')
     INSERT [dbo].[CMSetting] ([ApplicationID], [ApplicationName], [SettingPath], [APIAlias], [UpdatedDate], [AccessLevel], [Value], [RuntimeEnvironment], [VariableName])  
     VALUES (1008, N'General', N'dbRadFlow2', N'dbRadFlow2', getDate(), N'Internal', 
-	N'TV9Q2J14y0zRDLfX56tejqX1URRsKrhdmvgWb03AiUB50EeOwYUsDosADu9+IW+2YPHWI1tMncnFFK3o04Y+JLtR7kXRxQvPHGUq66Tilrf87lRga5Di5OB4o4n9U+sWNTL+7pRZsoKUp36CHBnODzpuJ6FL/dLCFsYyjHxoUAkUewksp+fzk37Pp4kplWIf'
+	N'htedomPL+ZuHNe2/jl9nPUlit0xQlzspApORIocSP6HlK5DG8IPk7t9oWEW/nCpaUZzYxNM0o1DX00w9uGddUIoAJxpbYWQ6XRt/Ls+sq+JlHHCKbDJi7pDwaSRnmveKLlw80fgS4zAkeMoCvPW6E07k2Om5mEYHCrZvycatj5s='
 	, N'Prod', N'dbRadFlow2'); 
 ELSE
 	UPDATE [CMSetting] SET 
-	[Value] = N'TV9Q2J14y0zRDLfX56tejqX1URRsKrhdmvgWb03AiUB50EeOwYUsDosADu9+IW+2YPHWI1tMncnFFK3o04Y+JLtR7kXRxQvPHGUq66Tilrf87lRga5Di5OB4o4n9U+sWNTL+7pRZsoKUp36CHBnODzpuJ6FL/dLCFsYyjHxoUAkUewksp+fzk37Pp4kplWIf '
+	[Value] = N'htedomPL+ZuHNe2/jl9nPUlit0xQlzspApORIocSP6HlK5DG8IPk7t9oWEW/nCpaUZzYxNM0o1DX00w9uGddUIoAJxpbYWQ6XRt/Ls+sq+JlHHCKbDJi7pDwaSRnmveKLlw80fgS4zAkeMoCvPW6E07k2Om5mEYHCrZvycatj5s='
 	WHERE  Apialias='dbRadFlow2' AND ApplicationID = 1008 and  RuntimeEnvironment = 'Prod'  ;	
 
 --7
